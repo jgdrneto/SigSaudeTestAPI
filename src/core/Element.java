@@ -42,11 +42,12 @@ public class Element {
 	 */
 	public Element(WebDriver driver,String name, SEARCH_TYPE type) throws NotFoundElementException{
 		
-		WebElement e = this.createElement(driver, name, type, 0);
+		this.element = this.createElement(driver, name, type, 0);
 		
-		if(e==null) {
+		if(this.element==null) {
 			throw new NotFoundElementException("Not Found Element on Page",name,type); 
 		}
+		
 	}
 	
 	/** Create a new element from selection criteria among several elements

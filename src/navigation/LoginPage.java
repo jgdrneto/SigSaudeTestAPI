@@ -24,9 +24,10 @@ public class LoginPage extends Page{
 		try {
 			this.elements.put("LOGIN", new Element(this.driver,"login-username",SEARCH_TYPE.BY_ID));
 			this.elements.put("PASSWORD", new Element(this.driver,"login-password",SEARCH_TYPE.BY_ID));
-			this.elements.put("ENTRAR", new Element(this.driver,"btn btn-light",SEARCH_TYPE.BY_CLASS));
+			this.elements.put("ENTRAR", new Element(this.driver,"btn",SEARCH_TYPE.BY_CLASS));
 			this.elements.put("ESQUECEU_SENHA", new Element(this.driver,"forgot-pass",SEARCH_TYPE.BY_CLASS));
 			this.elements.put("CADASTRA_SE", new Element(this.driver,"signup",SEARCH_TYPE.BY_CLASS));	
+			
 		}catch(NotFoundElementException e) {
 			System.err.println("Not Found element " + e.getName() + " using the type search " + e.getType().name());
 			e.printStackTrace();
@@ -74,5 +75,24 @@ public class LoginPage extends Page{
 		return this.elements.get("CADASTRA_SE");
 	}
 	
+	/** Execute system authentication 
+	 * 
+	 * @param login Value of user name
+	 * @param senha Value of password
+	 * 
+	 * @return If there was a login, it will return a IndexPage object, otherwise it will return a LoginPage object
+	 */
+	public Page executeAuthentication(String login, String senha) {
+		
+		this.elements.get("LOGIN").sendKeys(login);
+		this.elements.get("PASSWORD").sendKeys(login);
+		this.elements.get("ENTRAR").submit();
+		
+		if(this.driver.getCurrentUrl().contains("index")) {
+			return new IndexPage(driver);
+		}else {
+			return this;
+		}
+	}	
 }
 
