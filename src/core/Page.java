@@ -24,8 +24,25 @@ public class Page {
 	 * @param nDriver Driver needed to connect to the page  
 	*/
 	public Page(WebDriver nDriver) {
-		this.driver = nDriver;		
+		this.driver = nDriver;
+		this.driver.manage().window().maximize();
 		this.elements = new HashMap<String,Element>();
+	}
+	
+	public String getURL() {
+		return this.driver.getCurrentUrl();
+	}
+	
+	public void close() {
+		driver.quit();
+	}
+	
+	public WebDriver getDriver() {
+		return driver;
+	}
+	
+	public void setURL(String url) {
+		this.driver.get(url);
 	}
 	
 }

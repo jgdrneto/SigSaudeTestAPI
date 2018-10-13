@@ -9,12 +9,11 @@ import core.Page;
  * @version 1.0
  * @since 1.0
  */
-public class RegisterPage extends Page{
-	
+public class ListarColaboratorPage extends Page{
 	/** Represents a register page
 	 * @param nDriver Driver needed to connect to the page  
 	 */
-	public RegisterPage(WebDriver nDriver) {
+	public ListarColaboratorPage(WebDriver nDriver) {
 		super(nDriver);
 	}
 	

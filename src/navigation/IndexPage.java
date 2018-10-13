@@ -21,6 +21,7 @@ public class IndexPage extends Page{
 		super(nDriver);
 		
 		try {
+			this.elements.put("MENU_COLABORADOR", new Element(this.driver,"idColaborador",SEARCH_TYPE.BY_ID));
 			this.elements.put("NOVO_COLABORADOR", new Element(this.driver,"novoColaborador",SEARCH_TYPE.BY_ID));
 			this.elements.put("LISTAR_COLABORADOR", new Element(this.driver,"listarColaborador",SEARCH_TYPE.BY_ID));
 			this.elements.put("TIPOS_COLABORADOR", new Element(this.driver,"tiposColaborador",SEARCH_TYPE.BY_ID));
@@ -29,6 +30,19 @@ public class IndexPage extends Page{
 			System.err.println("Not Found element " + e.getName() + " using the type search " + e.getType().name());
 			e.printStackTrace();
 			System.exit(-1);
+		}
+		
+	}
+	
+	public Page gotoRegisterNewColaborator() {
+		
+		this.elements.get("MENU_COLABORADOR").click();
+		this.elements.get("NOVO_COLABORADOR").click();
+		
+		if(this.getURL().contains("colaborador/form")) {
+			return new RegisterColaboratorPage(driver);
+		}else {
+			return this;
 		}
 		
 	}

@@ -18,15 +18,17 @@ public class LoginPage extends Page{
 	 * 
 	 * @param nDriver Driver needed to connect to the page 
 	 */
-	public LoginPage(WebDriver nDriver) {
+	public LoginPage(WebDriver nDriver, String url) {
 		super(nDriver);
 		
+		nDriver.get(url);
+	
 		try {
 			this.elements.put("LOGIN", new Element(this.driver,"login-username",SEARCH_TYPE.BY_ID));
 			this.elements.put("PASSWORD", new Element(this.driver,"login-password",SEARCH_TYPE.BY_ID));
 			this.elements.put("ENTRAR", new Element(this.driver,"btn",SEARCH_TYPE.BY_CLASS));
-			this.elements.put("ESQUECEU_SENHA", new Element(this.driver,"forgot-pass",SEARCH_TYPE.BY_CLASS));
-			this.elements.put("CADASTRA_SE", new Element(this.driver,"signup",SEARCH_TYPE.BY_CLASS));	
+			//this.elements.put("ESQUECEU_SENHA", new Element(this.driver,"forgot-pass",SEARCH_TYPE.BY_CLASS));
+			//this.elements.put("CADASTRA_SE", new Element(this.driver,"signup",SEARCH_TYPE.BY_CLASS));	
 			
 		}catch(NotFoundElementException e) {
 			System.err.println("Not Found element " + e.getName() + " using the type search " + e.getType().name());
@@ -85,10 +87,10 @@ public class LoginPage extends Page{
 	public Page executeAuthentication(String login, String senha) {
 		
 		this.elements.get("LOGIN").sendKeys(login);
-		this.elements.get("PASSWORD").sendKeys(login);
+		this.elements.get("PASSWORD").sendKeys(senha);
 		this.elements.get("ENTRAR").submit();
 		
-		if(this.driver.getCurrentUrl().contains("index")) {
+		if(this.getURL().contains("index")) {
 			return new IndexPage(driver);
 		}else {
 			return this;
