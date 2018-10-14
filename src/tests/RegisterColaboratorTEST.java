@@ -16,6 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import core.Page;
 import navigation.IndexPage;
+import navigation.ListarColaboratorPage;
 import navigation.LoginPage;
 import navigation.RegisterColaboratorPage;
 
@@ -29,8 +30,26 @@ class RegisterColaboratorTEST {
 	@Parameters
 	public static Stream<Arguments> data(){
 		return Stream.of(
-			Arguments.of("043.020.690-90","neto","84998980908","teste","ajsgsagjh@gmail.com","neto2",RegisterColaboratorPage.class,null)
-		);
+			// Testar cadastro de colaborador ainda não cadastrado com todos os dados básicos.
+			Arguments.of("38639444021",	"Neto",	"as@gmail.com", "teste", "8431334454", "netodoforro1",ListarColaboratorPage.class,null),
+			Arguments.of("74250286894", "Neto", "fs@gmail.com", "teste", "8431334454", "netodoforro2",ListarColaboratorPage.class,null),
+			
+			// Testar cadastro de colaborador com campos obrigatórios vazios (Nome, CPF, e-mail, login, senha)
+			Arguments.of("", "Ramon", "bs@gmail.com", "teste", "84999873313", "ramon123",RegisterColaboratorPage.class,null),
+			Arguments.of("32108584897", "", "cs@gmail.com", "teste", "8434568796", "misterio_345",RegisterColaboratorPage.class,null),
+			Arguments.of("48506146127", "Yuri", "", "teste", "84999968796", "yuretreloso",RegisterColaboratorPage.class,null),
+			Arguments.of("1226918140", "Raíssa", "es@gmail.com", "teste", "84988868796", "",RegisterColaboratorPage.class,null),
+			
+			// Testar cadastro de colaborador com campos obrigatórios inválidos.
+			Arguments.of("11111111111", "Luana", "ds@gmail.com", "teste", "8433333333", "Luadecristal",RegisterColaboratorPage.class,null),
+			Arguments.of("86461891200", "Daniel", "hsgmail.com", "teste", "84991234567", "123Sol",RegisterColaboratorPage.class,null),
+			Arguments.of("54437989287", "Raikar", "is@gmail.com", "teste", "", "ra ra ra@#$%", RegisterColaboratorPage.class,null),
+			
+			// Testar cadastro de colaborador com campos únicos já cadastrados (CPF, e-mail, login).
+			Arguments.of("74250286894", "Laila", "js@gmail.com", "teste", "84932334567", "Lailinhah",RegisterColaboratorPage.class,null),
+			Arguments.of("81621711692", "Evandro", "as@gmail.com", "teste", "99995555", "Evandro12",RegisterColaboratorPage.class,null),
+			Arguments.of("59354550720", "Natasha", "ks@gmail.com", "teste", "", "netodoforro2",RegisterColaboratorPage.class,null)
+			);
 	}
 	
 	@BeforeEach
@@ -68,7 +87,7 @@ class RegisterColaboratorTEST {
 	@AfterEach
 	public void tearDown() throws Exception {
 		
-		//page.close();
+		page.close();
 	    String verificationErrorString = verificationErrors.toString();
 	    
 	    if (!"".equals(verificationErrorString)) {
