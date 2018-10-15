@@ -30,22 +30,22 @@ class RegisterColaboratorTEST {
 	@Parameters
 	public static Stream<Arguments> data(){
 		return Stream.of(
-			// Testar cadastro de colaborador ainda n„o cadastrado com todos os dados b·sicos.
-			Arguments.of("38639444021",	"Neto",	"as@gmail.com", "teste", "8431334454", "netodoforro1",ListarColaboratorPage.class,null),
+			// Testar cadastro de colaborador ainda n√£o cadastrado com todos os dados b√°sicos.
+			Arguments.of("38639444021",	"Neto",	"as@gmail.com", "teste", "8413934454", "netodoforro1",ListarColaboratorPage.class,null),
 			Arguments.of("74250286894", "Neto", "fs@gmail.com", "teste", "8431334454", "netodoforro2",ListarColaboratorPage.class,null),
 			
-			// Testar cadastro de colaborador com campos obrigatÛrios vazios (Nome, CPF, e-mail, login, senha)
+			// Testar cadastro de colaborador com campos obrigat√≥rios vazios (Nome, CPF, e-mail, login, senha)
 			Arguments.of("", "Ramon", "bs@gmail.com", "teste", "84999873313", "ramon123",RegisterColaboratorPage.class,null),
 			Arguments.of("32108584897", "", "cs@gmail.com", "teste", "8434568796", "misterio_345",RegisterColaboratorPage.class,null),
 			Arguments.of("48506146127", "Yuri", "", "teste", "84999968796", "yuretreloso",RegisterColaboratorPage.class,null),
-			Arguments.of("1226918140", "RaÌssa", "es@gmail.com", "teste", "84988868796", "",RegisterColaboratorPage.class,null),
+			Arguments.of("1226918140", "Ra√≠ssa", "es@gmail.com", "teste", "84988868796", "",RegisterColaboratorPage.class,null),
 			
-			// Testar cadastro de colaborador com campos obrigatÛrios inv·lidos.
+			// Testar cadastro de colaborador com campos obrigat√≥rios inv√°lidos.
 			Arguments.of("11111111111", "Luana", "ds@gmail.com", "teste", "8433333333", "Luadecristal",RegisterColaboratorPage.class,null),
 			Arguments.of("86461891200", "Daniel", "hsgmail.com", "teste", "84991234567", "123Sol",RegisterColaboratorPage.class,null),
 			Arguments.of("54437989287", "Raikar", "is@gmail.com", "teste", "", "ra ra ra@#$%", RegisterColaboratorPage.class,null),
 			
-			// Testar cadastro de colaborador com campos ˙nicos j· cadastrados (CPF, e-mail, login).
+			// Testar cadastro de colaborador com campos √∫nicos j√° cadastrados (CPF, e-mail, login).
 			Arguments.of("74250286894", "Laila", "js@gmail.com", "teste", "84932334567", "Lailinhah",RegisterColaboratorPage.class,null),
 			Arguments.of("81621711692", "Evandro", "as@gmail.com", "teste", "99995555", "Evandro12",RegisterColaboratorPage.class,null),
 			Arguments.of("59354550720", "Natasha", "ks@gmail.com", "teste", "", "netodoforro2",RegisterColaboratorPage.class,null)
@@ -63,7 +63,7 @@ class RegisterColaboratorTEST {
 	
 	@ParameterizedTest
 	@MethodSource("data")
-	public void registerColaborator(String cpf, String nome, String telefone, String tipoColaborador, String email,String login, Class<Page> pageResult ,Class<Exception> exception) throws Exception {
+	public void registerColaborator(String cpf, String nome, String email, String tipoColaborador, String telefone,String login, Class<Page> pageResult ,Class<Exception> exception) throws Exception {
 	    
 		try{
 		
